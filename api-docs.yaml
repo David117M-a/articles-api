@@ -3,7 +3,7 @@ info:
   description: API for managing articles in a catalog.
   version: "1.0.0"
   title: Articles API
-host: localhost:3000  # Change this to your server address
+host: 18.118.126.82
 basePath: /api/v1
 schemes:
   - http
