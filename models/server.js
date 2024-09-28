@@ -14,7 +14,8 @@ class Server {
         this.port = process.env.PORT || 8080;
 
         this.paths = {
-            auth: '/api/v1/articles'
+            articles: '/api/v1/articles',
+            swagger: '/api/v1/docs',
         }
 
         // Connect to db
@@ -39,9 +40,6 @@ class Server {
 
     middlewares() {
 
-        // Add swagger to api
-        this.app.use('/api/v1', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
         // CORS
         this.app.use(cors());
 
@@ -51,7 +49,9 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.paths.auth, require('../routes/articles'));
+        // Add swagger to api
+        this.app.use(this.paths.swagger, swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+        this.app.use(this.paths.articles, require('../routes/articles'));
     }
 
     listen() {
