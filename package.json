@@ -19,7 +19,10 @@
         "pg-hstore": "^2.3.4",
         "sequelize": "^6.37.3",
         "sequelize-noupdate-attributes": "^2.0.2",
-        "tedious": "^18.6.1"
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1",
+        "tedious": "^18.6.1",
+        "yamljs": "^0.3.0"
     },
     "devDependencies": {
         "@babel/core": "^7.25.2",

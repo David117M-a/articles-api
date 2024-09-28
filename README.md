@@ -20,8 +20,8 @@ You can create the database locally on SQL Server using this following file: [db
 
 ## Deployment
 
-The API is deployed on an **Amazon EC2** instance, allowing it to be accessible over the internet. The API can be consumed at the following address: 
-[text](http://your-ec2-public-dns:8080/test/api)
+The API is deployed on an **Amazon EC2** instance, allowing it to be accessible over the internet trough address http://18.118.126.82:80/api/v1. You can also check the Swagger documentation of the API in the same address: 
+[Documentation](http://18.118.126.82:80/api/v1)
 
 ## Environment Variables
 

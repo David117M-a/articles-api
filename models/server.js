@@ -1,5 +1,9 @@
 const express = require('express');
 const cors = require('cors');
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const path = require('path');
+const swaggerDocument = YAML.load(path.join(__dirname, '../api-docs.yaml'));
 
 const { db } = require('../database/config');
 
@@ -34,6 +38,9 @@ class Server {
 
 
     middlewares() {
+
+        // Add swagger to api
+        this.app.use('/api/v1', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
         // CORS
         this.app.use(cors());
