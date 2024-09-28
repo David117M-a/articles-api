@@ -1,0 +1,153 @@
+swagger: '2.0'
+info:
+  description: API for managing articles in a catalog.
+  version: "1.0.0"
+  title: Articles API
+host: localhost:3000  # Change this to your server address
+basePath: /api/v1
+schemes:
+  - http
+paths:
+  /articles:
+    get:
+      summary: Get all articles
+      description: Returns a list of all available articles.
+      produces:
+        - application/json
+      responses:
+        200:
+          description: List of articles
+          schema:
+            type: object
+            properties:
+              articles:
+                type: array
+                items:
+                  $ref: '#/definitions/Article'
+  
+  /articles/{id}:
+    get:
+      summary: Get article by ID
+      description: Returns the details of a specific article.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Article ID (alphanumeric, 10 characters)
+          required: true
+          type: string
+          maxLength: 10
+      responses:
+        200:
+          description: Article details
+          schema:
+            $ref: '#/definitions/Article'
+        404:
+          description: Article not found
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    value:
+                      type: string
+                    msg:
+                      type: string
+                    path:
+                      type: string
+                    location:
+                      type: string
+            example:
+              errors:
+                - type: "field"
+                  value: "a3g4vgF9G"
+                  msg: "No article was found with id: a3g4vgF9G"
+                  path: "id"
+                  location: "params"
+
+    put:
+      summary: Update article by ID
+      description: Allows updating the description and model of a specific article.
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Article ID (alphanumeric, 10 characters)
+          required: true
+          type: string
+          maxLength: 10
+        - name: body
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                maxLength: 200
+              model:
+                type: string
+                maxLength: 10
+      responses:
+        200:
+          description: Article updated
+          schema:
+            $ref: '#/definitions/Article'
+        400:
+          description: Invalid request
+        404:
+          description: Article not found
+          schema:
+            type: object
+            properties:
+              errors:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                    value:
+                      type: string
+                    msg:
+                      type: string
+                    path:
+                      type: string
+                    location:
+                      type: string
+            example:
+              errors:
+                - type: "field"
+                  value: "a3g4vgF9G"
+                  msg: "No article was found with id: a3g4vgF9G"
+                  path: "id"
+                  location: "params"
+
+definitions:
+  Article:
+    type: object
+    properties:
+      id:
+        type: string
+        maxLength: 10
+      name:
+        type: string
+        maxLength: 20
+      description:
+        type: string
+        maxLength: 200
+      price:
+        type: number
+        format: float
+        minimum: 0
+        maximum: 9999999999.99
+      model:
+        type: string
+        maxLength: 10
