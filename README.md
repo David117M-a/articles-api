@@ -45,6 +45,8 @@ The API uses **Amazon RDS** to host a **SQL Server** database instance. Below ar
 **Backup Settings**:
 - **Automatic Backups**: Enabled (Free Tier offers up to 20 GB of backup storage).
 
+The Database was created connecting directly to the RDS instance using the EC2 Instance Connect tool from aws console.
+
 ---
 
 ### 2. Amazon EC2 Instance (for API Deployment)
